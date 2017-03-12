@@ -44,10 +44,12 @@ class ArticleListController {
 	 * @return string
 	 */
 	private function validateCategoryName( $categoryName ) {
+		$categoryName = trim( $categoryName );
 		// check category name
 		if ( stripos( $categoryName, 'category:' ) !== 0 ) {
 			$categoryName = 'category:' . $categoryName;
 		}
+
 		return $categoryName;
 	}
 
