@@ -63,6 +63,20 @@ class ArticleList {
 		$articles = $this->getReadabilityScore( $pagesWithContent );
 
 		// sort by score and title
+		$articles = $this->sortArticles( $articles );
+
+		$cachedData->set( $articles )->expiresAfter( self::CACHE_TTL );
+		$cacheInstance->save( $cachedData );
+
+		return $articles;
+	}
+
+	/**
+	 * Sort articles by score and title
+	 * @param array $articles - list of articles
+	 * @return array
+	 */
+	public function sortArticles( $articles ) {
 		usort( $articles, function( $article1, $article2 ) {
 			if ( $article1['score'] == $article2['score'] ) {
 				return ( strcmp($article1['title'], $article2['title'] ) > 0 ) ? 1 : 0;
@@ -70,9 +84,6 @@ class ArticleList {
 
 			return ( $article1['score'] < $article2['score'] ) ? -1 : 1;
 		});
-
-		$cachedData->set( $articles )->expiresAfter( self::CACHE_TTL );
-		$cacheInstance->save( $cachedData );
 
 		return $articles;
 	}
@@ -173,7 +184,7 @@ class ArticleList {
 	 * @param string $html
 	 * @return string
 	 */
-	private function getFirstParagraph( $html ) {
+	public function getFirstParagraph( $html ) {
 		$error_setting = libxml_use_internal_errors( true );
 
 		$document = new DOMDocument();
