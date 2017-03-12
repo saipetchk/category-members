@@ -1,0 +1,36 @@
+.content {
+	font-family: helvetica, sans-serif;
+	font-size: 14px;
+}
+
+.category-name {
+	width: 400px;
+}
+
+.show-data {
+	margin-top: 20px;
+	overflow-x: auto;
+}
+
+.show-data table th {
+	background: #666;
+	color: #fff;
+	padding: 5px 10px;
+}
+
+.show-data table td {
+	padding: 5px 10px;
+}
+
+.data-score {
+	text-align: center;
+	width: 100px;
+}
+
+tr:nth-child(even) {
+	background: #fff;
+}
+
+tr:nth-child(odd) {
+	background: #ccc;
+}

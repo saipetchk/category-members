@@ -1,0 +1,6 @@
+{
+	"require": {
+		"davechild/textstatistics": "1.*",
+		"phpFastCache/phpFastCache": "5.*"
+	}
+}
